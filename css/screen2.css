@@ -703,7 +703,7 @@ input::placeholder {
   transform: none;
 }
 
-.c-custom-option__fake-input--checkbox .c-custom-option__symbol {/*voor de svg in de span van de label, default (kan gezien worden als het niet gecheckt is)*/
+.c-custom-option__fake-input--checkbox .c-custom-option__symbol {
   opacity: 0;
   width: 10px;
   height: 10px;
@@ -724,8 +724,12 @@ input::placeholder {
   border-radius: 100%;
 }
 
+.c-option-list {
+  margin-bottom: calc(var( --global-whitespace-sm ) * 3);
+}
+
 .c-option-list__item {
-  margin-bottom: calc(var(--global-whitespace-md) * 2 / 3);
+  margin-bottom: calc(var(--global-whitespace-sm) * 3 / 2);
 }
 
 .c-custom-option__fake-input {
@@ -738,98 +742,106 @@ input::placeholder {
   margin-right: var(--global-whitespace-sm);
 }
 
-.c-custom-option--hidden:active + .c-custom-option + .c-custom-fake,
-.c-custom-option--hidden:focus + .c-custom-option + .c-custom-fake {
+.c-custom-option__fake-input--checkbox {
+  border-radius: var(--global-borderRadius);
+}
+
+.c-custom-option__fake-input:hover {
+  border-color: var(--global-input-focus-borderColor);
+  transition: all var(--global-transitionTiming-alpha);
+}
+
+.c-option--hidden:focus + .c-custom-option .c-custom-option__fake-input {
   border-color: var(--global-input-focus-borderColor);
   box-shadow: var(--global-input-focus-boxShadow);
   transition: all var(--global-transitionTiming-alpha);
 }
-
 
 
 /*
     component hide stuff shit
 */
 
-.c-option--hidden:checked + .c-custom-option {
-  /*
-      Do magic stuff here, for example:
-      background-color: red;
-    */
-  fill: blue;
-}
-
-.c-option--hidden:checked + .c-label--option .c-custom-toggle__fake-input::after {
-  transition: all var(--global-transitionTiming-alpha);
-}
-
 .c-custom-toggle__fake-input {
   display: flex;
   align-items: flex-start;
-  width: calc(var(--global-baseline) * 5.9);
-  height: calc(var(--global-baseline) * 3);
+  height: calc(var(--global-baseline)* 3);
+  width: calc(var(--global-baseline)* 6);
+  margin-right: calc(var(--global-whitespace-sm)*2);
   border: var(--global-borderWidth) solid var(--global-input-borderColor);
+  border-radius: 32px;
+  transition: all var(--global-transitionTiming-alpha);
   background-color: var(--global-color-neutral-xxxx-light);
-  margin-right: var(--global-whitespace-sm);
-  border-radius: calc(var(--global-borderRadius) * 8);
 }
 
 .c-custom-toggle__fake-input::after {
   position: relative;
   display: block;
   content: '';
-  width: calc(var(--global-baseline) / 4 * 11);
-  height: calc(var(--global-baseline) / 4 * 11);
-  background-color: var(--global-input-backgroundColor);
-  border-radius: calc(var(--global-borderRadius) * 8);
+  height: 22px;
   transition: all var(--global-transitionTiming-alpha);
-  border: var(--global-borderWidth) solid var(--global-color-neutral-xxxx-light);
-  box-shadow: 2px 0 2px 0px var(--global-color-neutral-xx-light);
+  width: 22px;
+  border-radius: 22px;
+  box-shadow: 1px 3px 1px rgba(0, 0, 0, .02);
+  background-color: white;
+  fill: white;
 }
 
-.c-option--hidden:checked + .c-custom-toggle .c-custom-toggle__fake-input:after {
-  transform: translateX(calc(var(--global-baseline) * 3));
-  box-shadow: -2px 0 3px 0px var(--global-color-alpha-transparent);
-  border: var(--global-borderWidth) solid var(--global-color-alpha-light);
-}
-
-.c-option--hidden:active + .c-custom-toggle .c-custom-toggle__fake-input:after {
-  width: calc(var(--global-baseline) / 4 * 14);
-}
-
-.c-option--hidden:checked:active + .c-custom-toggle .c-custom-toggle__fake-input:after {
-  width: calc(var(--global-baseline) / 4 * 14);
-  transform: translateX(calc(var(--global-baseline) / 4 * 9))
-}
-
-.c-option--hidden:checked + .c-custom-toggle .c-custom-toggle__fake-input {
-  background-color: var(--global-color-alpha-light);
-}
-
-.c-option--hidden:focus + .c-custom-toggle .c-custom-toggle__fake-input {
-  border-color: var(--global-input-focus-borderColor);
-  box-shadow: var(--global-input-focus-boxShadow);
+.c-option--hidden:checked + .c-custom-option .c-custom-option__fake-input::after {
   transition: all var(--global-transitionTiming-alpha);
+  fill: blue;
+}
+.c-option--hidden:active + .c-custom-option .c-custom-toggle__fake-input::after {
+  width: 32px;
+}
+.c-option--hidden:checked + .c-custom-option .c-custom-toggle__fake-input{
+  background-color: var(--global-color-alpha-dark);
+  justify-content: flex-end;
+}
+.c-option--hidden:active + .c-custom-option .c-custom-toggle__fake-input,
+.c-option--hidden:focus + .c-custom-option .c-custom-toggle__fake-input{
+  box-shadow:  0 0 0 3px var(--global-color-alpha-x-transparent);
 }
 
-.c-option--hidden:hover + .c-custom-toggle .c-custom-toggle__fake-input {
-  border-color: var(--global-input-focus-borderColor);
-  transition: all var(--global-transitionTiming-alpha);
+.c-toggle-list__item {
+  margin-bottom: 12px;
 }
 
+.c-toggle-list__item + .c-toggle-list__item {
+  border-top: 1px solid var(--global-color-neutral-xx-light);
+  padding-top: 12px;
+}
 
+.c-custom-toggle--inverted {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.c-custom-toggle--inverted > .c-custom-toggle__fake-input {/*direct CHILD SELECTOR*/
+  margin-right: 0;
+}
 
 /*
-.c-custom-toggle__fake-input::after {
-  position: relative;
+  list
+*/
+
+.c-custom-select{
   display: block;
-  content: '';
-  width: calc(var(--global-baseline) * 3);
-  height: calc(var(--global-baseline) * 3);
-  border-radius: 24px;
-  background-color: var(--global-color-alpha);
-  transition: all var(--global-transitionTiming-alpha);
+  position: relative;
 }
+
+.c-custom-select__symbol {
+  height: 24px;
+  fill: #B5B6C0;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  pointer-events: none;/*Zet de klikbaarheid van het object af, waardoor degene eronder klikbaar wordt*/
+}
+
+/*
 #DARK THEME
 */
 
@@ -892,6 +904,8 @@ input::placeholder {
     border-top: var(--global-borderWidth) solid var(--global-color-neutral-xxxx-dark);
   }
 }
+
+
 
 /*------------------------------------*\
 #UTILITIES
